@@ -1,0 +1,20 @@
+#K-means Clustering
+install.packages("readr")
+library(readr)
+train <- read.csv("C:/Users/yo/Desktop/Customer Profiling/train.csv")
+
+View(train)
+
+colnames(train)
+
+library(ggplot2)
+ggplot(train, aes(train$BMI, train$Ins_Age, color = train$Response)) + geom_point()
+set.seed(20)
+
+CustomerCluster <- kmeans(train[,9,12], 3, nstart = 20)
+
+CustomerCluster
+CustomerCluster$Species
+table(CustomerCluster$cluster, CustomerCluster$Species)
+CustomerCluster <- as.factor(CustomerCluster$cluster)
+ggplot(train, aes(train$BMI, train$Ins_Age, color= CustomerCluster.cluster)) + geom_point()
